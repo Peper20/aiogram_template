@@ -1,0 +1,8 @@
+[db_config]
+user=
+password=
+host=
+name=
+
+[tg_bot]
+token=
