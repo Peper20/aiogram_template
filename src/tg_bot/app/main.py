@@ -4,15 +4,23 @@ import logging; logging.basicConfig(level=logging.INFO)
 from aiogram import Bot, Dispatcher
 
 
-from .features import features
-from .settings import tg_bot_config
+from app.features import features
+from app.config import TgBotConfig
+from app.ioc import create_container, setup
 
 
 
 
 async def create_app() -> tuple[Bot, Dispatcher]:
-    bot = Bot(token=tg_bot_config.token, parse_mode='html')
+    container = await create_container()
+
     dp = Dispatcher()
+    bot = Bot(
+        token=(await container.get(TgBotConfig)).token,
+        parse_mode='html',
+    )
+
+    await setup(container, dp)
 
     for feature in features:
         if hasattr(feature, 'init'):

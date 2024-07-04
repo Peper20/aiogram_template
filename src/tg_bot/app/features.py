@@ -1,7 +1,7 @@
 from types import ModuleType
 
 
-from . import (
+from app import (
     base_bot,
 )
 
