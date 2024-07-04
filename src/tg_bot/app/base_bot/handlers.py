@@ -1,12 +1,15 @@
-from aiogram import Router, F
+from aiogram import Router, F, types
 from aiogram.types import Message
+from aiogram.filters.command import Command
 
 
 
 
 router = Router()
 
-@router.message(F.text)
+
+@router.message(Command('start'))
 async def message_with_text(message: Message):
-    await message.answer("Тест")
+    await message.answer('Hello!')
+
 

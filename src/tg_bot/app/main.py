@@ -1,3 +1,6 @@
+import logging; logging.basicConfig(level=logging.INFO)
+
+
 from aiogram import Bot, Dispatcher
 
 
@@ -8,7 +11,7 @@ from .settings import tg_bot_config
 
 
 async def create_app() -> tuple[Bot, Dispatcher]:
-    bot = Bot(token=tg_bot_config.token)
+    bot = Bot(token=tg_bot_config.token, parse_mode='html')
     dp = Dispatcher()
 
     for feature in features:
