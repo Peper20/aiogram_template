@@ -20,11 +20,11 @@ async def create_app() -> tuple[Bot, Dispatcher]:
         parse_mode='html',
     )
 
-    await setup(container, dp)
-
     for feature in features:
         if hasattr(feature, 'init'):
             await feature.init(dp)
+
+    await setup(container, dp)
 
     return bot, dp
 

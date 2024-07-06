@@ -1,6 +1,7 @@
-from aiogram import Router, F, types
+from aiogram import Router, F, types, html
 from aiogram.types import Message
 from aiogram.filters.command import Command
+from dishka import FromDishka
 
 
 
@@ -8,8 +9,6 @@ from aiogram.filters.command import Command
 router = Router()
 
 
-@router.message(Command('start'))
+@router.message(F.text)
 async def message_with_text(message: Message):
-    await message.answer('Hello!')
-
-
+    await message.answer(html.quote('Hello!'))
